@@ -3,6 +3,7 @@
   fetchFromGitHub,
   cmake,
   vulkan-headers,
+  vulkan-loader,
   llvmPackages,
 }:
 
@@ -50,6 +51,7 @@ llvmPackages.stdenv.mkDerivation rec {
 
   buildInputs = [
     vulkan-headers
+    vulkan-loader
   ];
 
   meta = {
