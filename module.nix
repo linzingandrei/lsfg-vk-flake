@@ -50,8 +50,8 @@ in
         environment.systemPackages = [ cfg.package ];
 
         # Installs the Vulkan implicit layer system-wide
-        environment.etc."vulkan/implicit_layer.d/VkLayer_LS_frame_generation.json".source =
-          "${cfg.package}/share/vulkan/implicit_layer.d/VkLayer_LS_frame_generation.json";
+        environment.etc."vulkan/implicit_layer.d/VkLayer_LSFGVK_frame_generation.json".source =
+          "${cfg.package}/share/vulkan/implicit_layer.d/VkLayer_LSFGVK_frame_generation.json";
       }
       (lib.mkIf cfg.ui.enable {
         environment.systemPackages = [ lsfg-vk-ui ];
