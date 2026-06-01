@@ -1,6 +1,8 @@
 # lsfg-vk-flake
 Nix flake for using [Lossless Scaling's frame generation on Linux](https://github.com/PancakeTAS/lsfg-vk)
 
+This is taken from https://github.com/pabloaul/lsfg-vk-flake but uses the dev branch of lsfg-vk
+
 >[!IMPORTANT]
 > You need to have Lossless Scaling installed on Steam!
 > In case it is not installed on the default Steam drive, you may want to consider setting the correct path in the lsfg-vk config.
