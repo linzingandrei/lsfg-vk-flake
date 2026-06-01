@@ -39,7 +39,7 @@ llvmPackages.stdenv.mkDerivation rec {
         $out/share/vulkan/implicit_layer.d/VkLayer_LSFGVK_frame_generation.json \
         --replace-fail \
         "liblsfg-vk-layer.so" \
-        "../../lib/liblsfg-vk-layer.so"
+        "$out/lib/liblsfg-vk-layer.so"
   '';
 
   nativeBuildInputs = [
