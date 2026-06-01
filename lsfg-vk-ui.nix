@@ -1,46 +1,44 @@
 {
   lib,
   fetchFromGitHub,
+  stdenv,
+  cmake,
   rustPlatform,
   pkg-config,
-  glib,
-  pango,
-  gdk-pixbuf,
-  gtk4,
-  libadwaita,
+  qt6,
+  mesa,
+  libGL,
+  libglvnd,
 }:
 
-rustPlatform.buildRustPackage rec {
+stdenv.mkDerivation rec {
   pname = "lsfg-vk-ui";
-  version = "2.0.0-dev26";
+  version = "2.0.0-dev";
 
   src = fetchFromGitHub {
     owner = "PancakeTAS";
     repo = "lsfg-vk";
     tag = "v${version}";
-    hash = "sha256-nIyVOil/gHC+5a+sH3vMlcqVhixjJaGWqXbyoh2Nqyw=";
+    hash = "sha256-Qb3vufCzNpM1r+vgo8M9nnA7CENgGTithWG0oXqLKbI=";
   };
 
-  cargoHash = "sha256-hIQRS/egIDU5Vu/1KWHtpt4S26h+9GadVr+lBAG2LDg=";
+  sourceRoot = "source";
 
-  sourceRoot = "source/ui";
+  cmakeFlags = [ "-DLSFGVK_BUILD_UI=ON" ];
 
   nativeBuildInputs = [
+    cmake
     pkg-config
-    glib
+    qt6.wrapQtAppsHook
   ];
 
   buildInputs = [
-    pango
-    gdk-pixbuf
-    gtk4
-    libadwaita
+    qt6.qtbase
+    qt6.qtdeclarative
+    mesa
+    libGL
+    libglvnd
   ];
-
-  postInstall = ''
-    install -Dm444 $src/ui/rsc/gay.pancake.lsfg-vk-ui.desktop $out/share/applications/gay.pancake.lsfg-vk-ui.desktop
-    install -Dm444 $src/ui/rsc/icon.png $out/share/icons/hicolor/256x256/apps/gay.pancake.lsfg-vk-ui.png
-  '';
 
   meta = {
     description = "Graphical configuration interface for lsfg-vk";
