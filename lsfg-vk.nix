@@ -34,6 +34,13 @@ llvmPackages.stdenv.mkDerivation rec {
     runHook postInstall
   '';
 
+  postInstall = ''
+    substituteInPlace \
+        $out/share/vulkan/implicit_layer.d/VkLayer_LSFGVK_frame_generation.json \
+        --replace-fail \
+        "liblsfg-vk-layer.so" \
+        "../../lib/liblsfg-vk-layer.so"
+  '';
 
   nativeBuildInputs = [
     llvmPackages.clang-tools
