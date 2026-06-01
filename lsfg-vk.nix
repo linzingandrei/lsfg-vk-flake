@@ -18,10 +18,22 @@ llvmPackages.stdenv.mkDerivation rec {
     fetchSubmodules = true;
   };
 
-  postPatch = ''
-    substituteInPlace VkLayer_LS_frame_generation.json \
-      --replace-fail "liblsfg-vk.so" "$out/lib/liblsfg-vk.so"
+  installPhase = ''
+    runHook preInstall
+
+    find . -name "VkLayer_LSFGVK_frame_generation.json"
+
+    install -Dm755 lsfg-vk-cli/lsfg-vk-cli $out/bin/lsfg-vk-cli
+
+    install -Dm644 lsfg-vk-layer/VkLayer_LSFGVK_frame_generation.json \
+        $out/share/vulkan/implicit_layer.d/VkLayer_LSFGVK_frame_generation.json
+
+    install -Dm755 lsfg-vk-layer/liblsfg-vk-layer.so \
+        $out/lib/liblsfg-vk-layer.so
+
+    runHook postInstall
   '';
+
 
   nativeBuildInputs = [
     llvmPackages.clang-tools
