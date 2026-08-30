@@ -19,7 +19,7 @@ stdenv.mkDerivation rec {
     owner = "PancakeTAS";
     repo = "lsfg-vk";
     tag = "v${version}";
-    hash = "sha256-SDZXT+eYkOPr/qqZgCip9YSSf6SWwuvv1Y20+hlqGCw=";
+    hash = "sha256-1HfVRaExIhtD+yRgu0y1x02VVIT/lW1xm1oL7bxwoMA=";
   };
 
   sourceRoot = "source";
